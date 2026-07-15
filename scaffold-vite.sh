@@ -358,7 +358,7 @@ EOF
 
 # 11. Initialize Git
 echo "🔧 Initializing Git..."
-git init
+git init -b main
 git add .
 git commit -m "chore: initial setup with Vite, React, Tailwind v4, and GH Actions"
 
