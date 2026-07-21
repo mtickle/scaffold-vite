@@ -3,9 +3,6 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# --- Configuration ---
-GITHUB_USERNAME="mtickle"
-
 # Require a project name to prevent accidental default naming
 if [ -z "$1" ]; then
   echo "🛑 Error: Please provide a project name."
@@ -17,6 +14,15 @@ PROJECT_NAME=$1
 
 # --- Interactive Prompts ---
 echo -e "\n========================================"
+
+# Prompt for GitHub username and ensure it is not left blank
+while [ -z "$GITHUB_USERNAME" ]; do
+  read -p "👤 Enter your GitHub username: " GITHUB_USERNAME
+  if [ -z "$GITHUB_USERNAME" ]; then
+    echo "   ⚠️ Username is required for package.json and deployment."
+  fi
+done
+
 read -p "🤔 Do you want to install Supabase? (y/N): " INSTALL_SUPABASE
 read -p "🛣️  Do you want to install React Router? (y/N): " INSTALL_ROUTER
 read -p "📱 Do you want to configure this as a PWA? (y/N): " INSTALL_PWA
